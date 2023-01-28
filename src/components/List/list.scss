@@ -1,0 +1,20 @@
+@use "../../variables";
+@use "../../utils";
+
+.list {
+  color: variables.$black-color;
+  @include utils.light-blue-background;
+
+  .list-title {
+     @include utils.semibold;
+     font-size: 32px;
+  }
+
+  .list-content {
+    background-color: variables.$white-color;
+
+    .list-search {
+        font-size: 14px;
+    }
+  }
+}

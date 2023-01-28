@@ -10,7 +10,7 @@ export const filterContracts = (
 
   return contracts.filter(
     (contract) =>
-      contract.address.toLowerCase() === searchWord.toLowerCase() ||
-      contract.customerName.toLowerCase() === searchWord.toLowerCase()
+      contract.address.toLowerCase().includes(searchWord.toLowerCase()) ||
+      contract.customerName.toLowerCase().includes(searchWord.toLowerCase())
   );
 };

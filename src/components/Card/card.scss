@@ -1,0 +1,73 @@
+@use "../../variables";
+@use "../../utils";
+
+.card-title {
+  font-size: 16px;
+  background-color: variables.$light-gray;
+
+  .card-title-name-bold {
+    @include utils.bold;
+  }
+
+  .card-title-name-regular {
+    @include utils.lightFont;
+  }
+
+  .card-subtitle {
+    font-size: 12px;
+    color: rgba(variables.$black-color, 0.5);
+  }
+}
+
+.card-address {
+  font-size: 14px;
+}
+
+.card-rooms {
+  @include utils.flex-row;
+
+  .card-room-item {
+    @include utils.light-blue-background;
+    color: variables.$light-blue-color;
+    font-size: 12px;
+  }
+}
+
+.card-general-info {
+  @include utils.flex-column;
+
+  .card-general-info-titles {
+    @include utils.flex-row;
+    font-size: 12px;
+    color: variables.$gray-color;
+  }
+
+  .card-general-info-details {
+    @include utils.flex-row;
+    font-size: 14px;
+
+    .card-general-info-details-total {
+      @include utils.bold;
+    }
+
+    .in-progress-button {
+      background-color: variables.$light-gray;
+    }
+
+    .done-button {
+      background-color: variables.$button-background-light-green;
+      color: variables.$button-text-green;
+    }
+
+    .canceled-button {
+      @include utils.bold;
+      background-color: variables.$button-background-light-blue;
+      color: variables.$light-blue-color;
+    }
+
+    .negotiation-button {
+        background-color: variables.$button-background-light-orange;
+        color: variables.$button-text-orange;
+    }
+  }
+}

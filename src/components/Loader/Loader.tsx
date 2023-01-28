@@ -5,7 +5,7 @@ export const Loader = () => {
   return (
     <>
       <Box>
-        <CircularProgress disableShrink size="15rem" sx={{ mt: "30%" }} />
+        <CircularProgress disableShrink size="15rem" sx={{ mt: "20%" }} />
       </Box>
     </>
   );

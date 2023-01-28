@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
@@ -6,18 +6,17 @@ import ErrorPopup from "../AlertDialog/AlertDialog";
 import { getContracts } from "../../redux/contracts/actions";
 import { filterContracts } from "../../utils/contracts";
 import { ContractState } from "../../redux/contracts/types";
+import "./list.scss";
 
 function List() {
-  const seacrhWordRef = useRef(null);
   const dispatch = useDispatch();
-
   const { isLoading, isError, contracts } = useSelector(
     (state: { contracts: ContractState }) => state.contracts
   );
 
-  const filteredContracts = filterContracts(contracts, "");
-  console.log("seacrhWordRef", seacrhWordRef.current);
-  console.log("filteredContracts", filteredContracts);
+  const [searchWord, setSearchWord] = useState<string>("");
+
+  const filteredContracts = filterContracts(contracts, searchWord);
 
   const fetchContracts = () => {
     dispatch(getContracts());
@@ -28,15 +27,22 @@ function List() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="list">
+      <div className="list-title">Contracts</div>
       {!isLoading && !isError && (
-        <div className="list">
+        <div className="list-content">
           <form onSubmit={(e: React.SyntheticEvent) => e.preventDefault()}>
-            <input type="text" ref={seacrhWordRef} />
+            <input
+              type="text"
+              placeholder="Search Customer"
+              className="list-search"
+              value={searchWord}
+              onChange={(event) => setSearchWord(event.target.value)}
+            />
             <button>Search</button>
           </form>
           {filteredContracts.map((contract) => (
-            <Card key={contract.id} contract={contract} />
+            <Card key={contract.id + contract.projectId} contract={contract} />
           ))}
         </div>
       )}

@@ -10,13 +10,13 @@ const initialState: ContractState = {
 export const contractsReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case Constants.SET_CONTRACTS_SUCCESS: {
-      return { ...state, contracts: action.payload, isError: false };
+      return { contracts: action.payload, isError: false, isLoading: false };
     }
     case Constants.SET_LOADING: {
       return { ...state, isLoading: action.payload };
     }
     case Constants.SET_ERROR: {
-      return { ...state, isError: true };
+      return { ...state, isError: true, isLoading: false };
     }
     default: {
       return state;
