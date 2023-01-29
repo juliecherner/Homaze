@@ -18,4 +18,4 @@ Technologies used:
 - @media query
 - JSON from mock API - [Beeceptor](https://homaze-list.free.beeceptor.com) with GET request
 
-Checkout UI on [Netlify]()
+Checkout UI on [Netlify](https://contracts-list.netlify.app/)
