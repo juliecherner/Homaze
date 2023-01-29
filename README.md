@@ -9,7 +9,7 @@ Requirements of assignment:
 - Get data from mock API (JSON is provided)
 - Search is executed with 2 letter in the input minimum
 
-##Init
+## Init
 
 ```
 cp .env.example .env
