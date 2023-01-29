@@ -1,73 +1,131 @@
 @use "../../variables";
 @use "../../utils";
 
-.card-title {
-  font-size: 16px;
-  background-color: variables.$light-gray;
+$padding-left: 20px;
 
-  .card-title-name-bold {
-    @include utils.bold;
-  }
-
-  .card-title-name-regular {
-    @include utils.lightFont;
-  }
-
-  .card-subtitle {
-    font-size: 12px;
-    color: rgba(variables.$black-color, 0.5);
-  }
+@mixin ellipsis-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.card-address {
-  font-size: 14px;
-}
+$button-text-green: #30d869;
+$button-text-orange: #e4783c;
 
-.card-rooms {
-  @include utils.flex-row;
+$button-background-light-blue: #ebf7fc;
+$button-background-light-green: #ebfcec;
+$button-background-light-orange: #faeee8;
 
-  .card-room-item {
-    @include utils.light-blue-background;
-    color: variables.$light-blue-color;
-    font-size: 12px;
+.card {
+  width: 350px;
+  height: 235px;
+  border: 1px solid variables.$very-light-blue-color;
+  border-radius: 9px;
+  @include utils.arrow-letter-spacing;
+
+  .card-title {
+    height: 76px;
+    @include utils.flex-column;
+    justify-content: center;
+    padding-left: $padding-left;
+    font-size: 16px;
+    background-color: variables.$light-gray;
+
+    .card-title-content {
+      height: 36px;
+
+      .card-title-name {
+        @include ellipsis-overflow;
+
+        &.bold {
+          @include utils.bold;
+        }
+
+        &.light-font {
+          @include utils.lightFont;
+        }
+      }
+
+      .card-subtitle {
+        font-size: 12px;
+        color: rgba(variables.$black-color, 0.5);
+      }
+    }
   }
-}
 
-.card-general-info {
-  @include utils.flex-column;
-
-  .card-general-info-titles {
-    @include utils.flex-row;
-    font-size: 12px;
-    color: variables.$gray-color;
-  }
-
-  .card-general-info-details {
-    @include utils.flex-row;
+  .card-address {
     font-size: 14px;
+    line-height: 20px;
+    padding: 10px 0 20px $padding-left;
+    @include ellipsis-overflow;
+  }
 
-    .card-general-info-details-total {
-      @include utils.bold;
-    }
+  .card-rooms {
+    height: 28px;
+    @include utils.flex-row;
+    align-items: center;
+    gap: 3px;
+    padding-left: $padding-left;
 
-    .in-progress-button {
-      background-color: variables.$light-gray;
-    }
-
-    .done-button {
-      background-color: variables.$button-background-light-green;
-      color: variables.$button-text-green;
-    }
-
-    .canceled-button {
-      @include utils.bold;
-      background-color: variables.$button-background-light-blue;
+    .card-room-item {
+      padding: 4px 10px;
+      font-size: 12px;
+      @include utils.light-blue-background;
       color: variables.$light-blue-color;
     }
+  }
 
-    .negotiation-button {
-        background-color: variables.$button-background-light-orange;
-        color: variables.$button-text-orange;
+  .card-general-info {
+    padding: 20px;
+    @include utils.flex-row;
+
+    .card-general-info-column {
+      &.updated {
+        padding-right: 34px;
+      }
+
+      &.total {
+        padding-right: 10px;
+      }
+
+      .card-general-info-title {
+        font-size: 12px;
+        color: variables.$gray-color;
+        margin-bottom: 8px;
+
+        &.stage-title {
+          padding-left: 10px;
+          margin-bottom: 5px;
+        }
+      }
+      .card-general-info-details-total {
+        @include utils.bold;
+      }
+
+      .card-general-info-details-stage {
+        padding: 2px 10px;
+        border-radius: 50px;
+
+        &.in-progress {
+          background-color: variables.$light-gray;
+        }
+
+        &.done {
+          background-color: $button-background-light-green;
+          color: $button-text-green;
+        }
+
+        &.canceled {
+          @include utils.bold;
+          background-color: $button-background-light-blue;
+          color: variables.$light-blue-color;
+        }
+
+        &.negotiation {
+          background-color: $button-background-light-orange;
+          color: $button-text-orange;
+        }
+      }
     }
   }
 }

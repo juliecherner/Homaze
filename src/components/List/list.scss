@@ -2,19 +2,81 @@
 @use "../../utils";
 
 .list {
+  @include utils.flex-column;
+  margin-bottom: 46px;
   color: variables.$black-color;
-  @include utils.light-blue-background;
 
   .list-title {
-     @include utils.semibold;
-     font-size: 32px;
+    height: 64px;
+    font-size: 32px;
+    line-height: 48px;
+    letter-spacing: 0.44;
+    @include utils.semibold;
   }
 
   .list-content {
+    padding: 30px;
     background-color: variables.$white-color;
+    border: 1px solid variables.$very-light-blue-color;
+    border-radius: 9px;
+    @include utils.flex-column;
 
-    .list-search {
+    form {
+      @include utils.listWidth(desktop);
+      padding-bottom: 20px;
+      opacity: 0.2;
+
+      .list-search {
+        height: 46px;
+        width: 289px;
+        padding-left: 15px;
         font-size: 14px;
+        border: 1px solid variables.$black-color;
+        border-radius: 7px;
+        background: right / contain no-repeat
+          url(../../assets/images/search-icon.png);
+        background-size: 17px;
+        background-position: right 15px bottom 50%;
+      }
+    }
+
+    .list-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 26px;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .list {
+    .list-content {
+      form {
+        @include utils.listWidth(tablet);
+      }
+
+      .list-items {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .list {
+    margin-bottom: 20px;
+
+    .list-content {
+      padding: 20px 5px;
+
+      form {
+        @include utils.listWidth(mobile);
+      }
+
+      .list-items {
+        grid-template-columns: 1fr;
+        grid: 10px;
+      }
     }
   }
 }

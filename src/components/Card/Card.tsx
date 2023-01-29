@@ -1,4 +1,5 @@
 import moment from "moment";
+import { formatTotalSum } from "../../utils/card";
 import { ContractDetails } from "../../types/contracts";
 import "./card.scss";
 
@@ -10,10 +11,10 @@ const fieldsNames: Record<string, string> = {
 };
 
 const stageClasses: Record<string, string> = {
-  "In progress": "in-progress-button",
-  Done: "done-button",
-  Cancelled: "canceled-button",
-  Negotiation: "negotiation-button",
+  "In progress": "in-progress",
+  Done: "done",
+  Cancelled: "canceled",
+  Negotiation: "negotiation",
 };
 
 type CardProps = {
@@ -22,27 +23,29 @@ type CardProps = {
 
 function Card({ contract }: CardProps) {
   const customerNameClass = contract.customerName
-    ? "card-title-name-bold"
-    : "card-title-name";
+    ? "card-title-name bold"
+    : "card-title-name light-font";
 
   const formattedUpdateTime = moment(contract.updated_timestmp).format(
     "MM.DD.YYYY"
   );
 
+  const totalSum = formatTotalSum(contract.totalProject);
+
   return (
     <div className="card">
       <div className="card-title">
-        <div className={customerNameClass}>
-          {contract.customerName || "Untitled"}
-        </div>
-        <div className="card-subtitle">
-          {fieldsNames.id}
-          {contract.projectId}
+        <div className="card-title-content">
+          <div className={customerNameClass}>
+            {contract.customerName || "Untitled"}
+          </div>
+          <div className="card-subtitle">
+            {fieldsNames.id}
+            {contract.projectId}
+          </div>
         </div>
       </div>
-      <div className="card-address">
-        <div>{contract.address}</div>
-      </div>
+      <div className="card-address">{contract.address}</div>
       <div className="card-rooms">
         {contract.rooms.map((room) => (
           <div key={room.id} className="card-room-item">
@@ -51,21 +54,26 @@ function Card({ contract }: CardProps) {
         ))}
       </div>
       <div className="card-general-info">
-        <div className="card-general-info-titles">
-          <div>{fieldsNames.lastUpdated}</div>
-          <div className="card-general-info-title">{fieldsNames.total}</div>
-          <div className="card-general-info-title">{fieldsNames.stage}</div>
+        <div className="card-general-info-column updated">
+          <div className="card-general-info-title">
+            {fieldsNames.lastUpdated}
+          </div>
+          <div className="card-general-info-details">{formattedUpdateTime}</div>
         </div>
-
-        <div className="card-general-info-details">
-          <div className="card-general-info-details-update">
-            {formattedUpdateTime}
+        <div className="card-general-info-column total">
+          <div className="card-general-info-title">{fieldsNames.total}</div>
+          <div className="card-general-info-details-total">{totalSum}</div>
+        </div>
+        <div className="card-general-info-column stage">
+          <div className="card-general-info-title stage-title">
+            {fieldsNames.stage}
           </div>
-          <div className="card-general-info-details-total">
-            {"$".toString()}
-            {contract.totalProject}
-          </div>
-          <div className={stageClasses[contract.projectState]}>
+          <div
+            className={
+              "card-general-info-details-stage " +
+              stageClasses[contract.projectState]
+            }
+          >
             {contract.projectState}
           </div>
         </div>

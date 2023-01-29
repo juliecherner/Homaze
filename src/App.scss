@@ -1,3 +1,11 @@
+@use "./variables";
+@use "./utils";
+
 .App {
-  text-align: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  @include utils.flex-row;
+  justify-content: center;
+  background: variables.$very-light-blue-color;
+  font-family: "PoppinsRegular";
 }

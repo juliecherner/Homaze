@@ -24,7 +24,7 @@ function List() {
 
   useEffect(() => {
     fetchContracts();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="list">
@@ -39,11 +39,15 @@ function List() {
               value={searchWord}
               onChange={(event) => setSearchWord(event.target.value)}
             />
-            <button>Search</button>
           </form>
-          {filteredContracts.map((contract) => (
-            <Card key={contract.id + contract.projectId} contract={contract} />
-          ))}
+          <div className="list-items">
+            {filteredContracts.map((contract) => (
+              <Card
+                key={contract.id + contract.projectId}
+                contract={contract}
+              />
+            ))}
+          </div>
         </div>
       )}
       {!isLoading && isError && (

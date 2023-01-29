@@ -9,6 +9,18 @@
     display: flex;
     flex-direction: column;
 }
+
+@mixin listWidth ($version) {
+    @if $version == mobile {
+        width: 360px;
+      } @else if $version == tablet {
+        width: 730px;
+      } @else if $version == desktop {
+        width: 1120px;
+      } @else {
+        @error "[utils.sccs] Unknown device type.";
+      }
+}
   
 @mixin lightFont {
     font-weight: 300;
@@ -25,3 +37,8 @@
 @mixin light-blue-background {
     background-color: rgba(variables.$light-blue-color, variables.$light-blue-color-background-opacity);
 }
+
+@mixin arrow-letter-spacing {
+    letter-spacing: 0.27;
+}
+
