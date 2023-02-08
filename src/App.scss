@@ -7,5 +7,5 @@
   @include utils.flex-row;
   justify-content: center;
   background: variables.$very-light-blue-color;
-  font-family: "PoppinsRegular";
+  @include utils.baseFont;
 }

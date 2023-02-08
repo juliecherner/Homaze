@@ -58,7 +58,9 @@ function Card({ contract }: CardProps) {
           <div className="card-general-info-title">
             {fieldsNames.lastUpdated}
           </div>
-          <div className="card-general-info-details">{formattedUpdateTime}</div>
+          <div className="card-general-info-details-updated">
+            {formattedUpdateTime}
+          </div>
         </div>
         <div className="card-general-info-column total">
           <div className="card-general-info-title">{fieldsNames.total}</div>

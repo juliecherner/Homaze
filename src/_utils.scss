@@ -21,6 +21,12 @@
         @error "[utils.sccs] Unknown device type.";
       }
 }
+
+@mixin baseFont {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "PoppinsRegular";
+}
   
 @mixin lightFont {
     font-weight: 300;
